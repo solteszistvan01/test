@@ -96,4 +96,11 @@ partition PushNewBranchToGitHub{
     :CALL: PushStagedFiles;
     stop
 }
+partition UpdateLocalRepository{
+    start
+    :GOTO: PyCharm;
+    :PRESS: "Updare project...";
+    :PRESS: OK;
+    stop
+}
 @enduml
