@@ -88,6 +88,7 @@ partition CreateBranchFromMaster {
     stop
 }
 
+<<<<<<< HEAD
 partition MergeBranches{
     start
     :GOTO: PyCharm;
@@ -96,6 +97,22 @@ partition MergeBranches{
     :PRESS: "checkout";
     :RIGHT CLICK: Source branch;
     :PRESS: "Merge <source branch> into <target branch>"
+=======
+partition PushNewBranchToGitHub{
+    start
+    :GOTO: PyCharm;
+    :PRESS: "Git";
+    :RIGHT CLICK ON: New branch to push;
+    :PRESS: "checkout";
+    :CALL: PushStagedFiles;
+    stop
+}
+partition UpdateLocalRepository{
+    start
+    :GOTO: PyCharm;
+    :PRESS: "Updare project...";
+    :PRESS: OK;
+>>>>>>> development
     stop
 }
 @enduml
