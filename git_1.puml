@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+partition ConnectPyCharmWithGitHub {
+    start
+    :Sign In to GitHub;
+    :GOTO: Create a new repository;
+    :FILL DATA FIELD: "Repository name";
+    :FILL DATA FIELD: "Description";
+    :CHOOSE: Public or Private;
+    :PRESS: Create repository;
+    if (idk)
+        :FIND: SSH;
+        :PESS: SSH;
+        :COPY: Link right next to SSH;
+        :GOTO: PyCharm;
+        :GOTO: GIt;
+        :PRESS: Clone;
+        :FILL DATA FIELD: "URL" WITH: Link right next to SSH;
+        :PRESS Clone;
+    else
+        :FIND: HTTPS;
+        :PESS: HTTPS;
+        :COPY: Link right next to HTTPS;
+        :GOTO: PyCharm;
+        :RIGHT CLICK ON: Project's folder;
+        :GOTO: "Git";
+        :PRESS: "Manage remotes";
+        :PRESS: "Add";
+        :"FILL DATA FIELD: "URL" WITH: Link right next to HTTPS;
+        :FILL DATA FIELD: "Name" WITH: ...;
+    endif
+stop
+}
+partition AddFileToStagingArea {
+    start
+    :CREATE: File with "README" name and ".md" extension;
+    if (Choice exists to add "README" to Git)
+        :Add "README" to Git;
+    else
+        :RIGHT CLICK ON: "README.md";
+        :GOTO: "Git";
+        :PRESS: "Add";
+    endif
+stop
+}
+
+partition idkyet {
+start
+:GOTO: PyCharm;
+:PRESS: Commit;
+:MARK: Square left to "Changes <number> files";
+stop
+}
+@enduml
