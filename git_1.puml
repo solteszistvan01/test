@@ -44,11 +44,45 @@ partition AddFileToStagingArea {
 stop
 }
 
-partition idkyet {
+partition CommitAllChangedFiles {
 start
-:GOTO: PyCharm;
-:PRESS: Commit;
-:MARK: Square left to "Changes <number> files";
+    :GOTO: PyCharm;
+    :PRESS: Commit;
+    :MARK: Square left to "Changes <number> files";
+    :FILL DATA FIELD: "Black quare in Commit" WITH: "Information related to the Changes";
+    :PRESS: "Commit";
 stop
+}
+
+partition PushStagedFiles {
+start
+    :GOTO: PyCharm;
+    :PRESS: Push;
+    :CHOOSE AND PRESS: Commit needed to be pushed;
+    :PRESS: Push;
+stop
+}
+
+partition AddToGitignore {
+start
+    :ASSUMPTION:;
+    :CREATE: File with name <name> and extension <extension>;
+    :RIGHT CLICK ON: File created last time;
+    :GOTO: Git;
+    :GOTO: "Add to .gitignore";
+    :"PRESS: ".gitignore";
+    if (.gitignore is not created and appropriate window popped up)
+        :PRESS: "Add";
+    endif
+stop
+}
+
+partition CreateBranchFromMaster {
+    :GOTO: PyCharm;
+    :PRESS: Git;
+    :DROP DOWN: Local;
+    :RIGHT CLICK: master;
+    :PRESS: "New branch from 'master'...";
+    :FILL DATA FIELD: "New branch name:" WITH: <branch name>;
 }
 @enduml
