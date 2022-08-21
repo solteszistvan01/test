@@ -1,0 +1,61 @@
+@startuml
+class Team
+class TeamMember
+
+class ProjectManager
+class ScrumMaster
+class RequirementsEngineer
+class SoftwareArchitect
+class SoftwareDeveloper
+class SoftwareTester
+
+class Issue
+class Epic
+class Story
+class Task
+
+class ProductBacklog
+class SprintBacklog
+class Feature
+class Product
+
+class Artifact
+class BurndownChart
+
+class SourceCode
+class Automation
+
+class Project
+
+class Workflow
+
+TeamMember "0..1" - "0..*" Issue
+(TeamMember, Issue) .. Assignment
+
+Team o-- "1..*"TeamMember
+TeamMember <--- RequirementsEngineer
+TeamMember <--- SoftwareArchitect
+TeamMember <--- SoftwareDeveloper
+TeamMember <--- SoftwareTester
+
+Issue <--- Epic
+Issue <--- Story
+Issue <--- Task
+
+Epic    o-- "0..*" Story
+Story   o-- "0..*"Task
+
+Feature <----- Story
+Product <---- Epic
+ProductBacklog *-- "0..*"Issue
+
+SourceCode <-- Automation
+
+Project *-- "1"ProductBacklog
+
+Artifact <-- BurndownChart
+
+class Assignment {
+    !! syntax !! completion : Union[InProcess,Ready,NotStarted]
+}
+@enduml
