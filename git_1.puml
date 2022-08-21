@@ -84,5 +84,16 @@ partition CreateBranchFromMaster {
     :RIGHT CLICK: master;
     :PRESS: "New branch from 'master'...";
     :FILL DATA FIELD: "New branch name:" WITH: <branch name>;
+    stop
+}
+
+partition PushNewBranchToGitHub{
+    start
+    :GOTO: PyCharm;
+    :PRESS: "Git";
+    :RIGHT CLICK ON: New branch to push;
+    :PRESS: "checkout";
+    :CALL: PushStagedFiles;
+    stop
 }
 @enduml
