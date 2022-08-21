@@ -78,11 +78,24 @@ stop
 }
 
 partition CreateBranchFromMaster {
+    start
     :GOTO: PyCharm;
     :PRESS: Git;
     :DROP DOWN: Local;
     :RIGHT CLICK: master;
     :PRESS: "New branch from 'master'...";
     :FILL DATA FIELD: "New branch name:" WITH: <branch name>;
+    stop
+}
+
+partition MergeBranches{
+    start
+    :GOTO: PyCharm;
+    :Press: "Git";
+    :Right click: Target branch;
+    :PRESS: "checkout";
+    :RIGHT CLICK: Source branch;
+    :PRESS: "Merge <source branch> into <target branch>"
+    stop
 }
 @enduml
